@@ -1,0 +1,19 @@
+package com.FlipKart.Listerners;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
+public class ExtendReportListener {
+
+	public static ExtentHtmlReporter reporter =null;
+	public static ExtentReports extent =null;
+	public static ExtentTest etest =null;
+	
+	
+	public void setUp()
+	{
+		String reportLocation = "./Reports/Extend_Reports.html";
+		
+	}
+}

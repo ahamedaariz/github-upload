@@ -1,0 +1,47 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Test;
+
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.PageObjects.HomePage;
+import com.FlipKart.PageObjects.LoginFlipkart;
+
+public class AddProductTest extends BaseClass{
+	
+	LoginFlipkart loginFlip;
+	HomePage homePage;
+	AddProduct addproduct;
+	
+	public AddProductTest()
+	{
+		super();
+	}
+	
+	
+/*	@Test(priority=0)
+	public void loginTest() throws InterruptedException
+	{
+		initialization();
+		LoginFlipkart loginFlip =new LoginFlipkart(driver);
+		Thread.sleep(2000);
+		homePage =loginFlip.validateLogin(prop.getProperty("loginMobileNumber"), prop.getProperty("loginPassword"));
+		
+	}*/
+	
+/*	@Test(priority=1)
+	public void homepageValidation()
+	{
+		HomePage home = new HomePage(driver);
+		addproduct=home.searchItem("Camera");
+	}*/
+	
+	@Test()
+	public void addproductValidation()
+	{
+		System.out.println("Add Product page test");	
+	/*	AddProduct addp = new AddProduct(driver);
+		addp.productClick();*/
+	}
+	
+
+}

@@ -1,0 +1,43 @@
+package com.FlipKart.Utilities;
+
+import java.util.Random;
+import java.util.Set;
+
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.testCases.BaseClass;
+
+public class Utilities extends BaseClass {
+	AddProduct addproduct;
+	
+	public static long PAGE_LOAD_TIMEOUT =20;
+	public static long IMPLICIT_WAIT =20;
+	
+
+		
+
+	
+	
+	public static void windowHandles(String superWindow)
+	{
+		String parentWindow =superWindow;
+		Set<String> windows = driver.getWindowHandles();
+		while(windows.size()!=0)
+		{
+			if(windows.size()>1)
+			{
+				break;
+			}
+			
+			windows = driver.getWindowHandles();
+		}
+		
+		for(String childWindow:windows )
+		{
+			if(childWindow!=parentWindow)
+			{
+				driver.switchTo().window(childWindow);
+			}
+		}
+	}
+
+}

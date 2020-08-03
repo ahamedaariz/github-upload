@@ -1,0 +1,17 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Test;
+import com.FlipKart.PageObjects.HomePage;
+
+public class HomePageTest {
+	public HomePage home;
+	
+	@Test()
+	public void homepageValidation()
+	{
+		driver.get(baseurl);
+		home = new HomePage(driver);
+		home.closeButton();
+		home.searchItem("General Knowledge Capsule 2020");
+	}
+}

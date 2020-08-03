@@ -1,0 +1,10 @@
+package com.FlipKart.Utilities;
+
+public class ReadConfig {
+
+	public ReadConfig()
+	{
+		File srcfile = new File("./Configuration/config.properties");
+	}
+	
+}

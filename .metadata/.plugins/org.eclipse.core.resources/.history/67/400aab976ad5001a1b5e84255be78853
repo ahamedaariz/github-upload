@@ -1,0 +1,65 @@
+package com.FlipKart.Listerners;
+
+import java.io.IOException;
+
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeTest;
+
+import com.FlipKart.Utilities.Utilities;
+import com.FlipKart.testCases.BaseClass;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+public class ExtendReportListener extends BaseClass  {
+
+	public  ExtentHtmlReporter reporter;
+	public  ExtentReports extent;
+	public  ExtentTest etest;
+	
+	@BeforeTest
+	public ExtentReports setUp()
+	{
+	String reportLocation = System.getProperty("user.dir")+"/Reports/extentReports.html";
+	System.out.println(reportLocation);
+	reporter= new ExtentHtmlReporter(reportLocation);
+	reporter.config().setDocumentTitle("FlipKart Automation Test Report");
+	reporter.config().setReportName("Automation Result Report");
+	reporter.config().setTheme(Theme.DARK);
+	System.out.println("Extent Report location initialized");
+	reporter.start();
+	
+	extent =new ExtentReports();
+	extent.attachReporter(reporter);
+	extent.setSystemInfo("Application","FlipKart" );
+	extent.setSystemInfo("Operation System", System.getProperty("os.name"));
+	extent.setSystemInfo("User Name", System.getProperty("user.name"));
+	System.out.println("System Info. set in Extent Report");
+	return extent;
+	}
+	
+	 @AfterMethod
+	    public void getResult(ITestResult result) throws IOException {
+	        if(result.getStatus() == ITestResult.FAILURE) {
+	        	String res = Utilities.takeScreenshot(driver, result.getName());
+	            ExtentTest image= test.addScreenCaptureFromPath(res);
+	            String TestCaseName = this.getClass().getSimpleName() + " Test Case Failure and Title/Boolean Value Failed";
+	            test.log(Status.FAIL, TestCaseName + test.addScreencastFromPath(res));
+	        }
+	        else if(result.getStatus() == ITestResult.SUCCESS) {
+	            test.log(Status.PASS, MarkupHelper.createLabel(result.getName()+" PASSED ", ExtentColor.GREEN));
+	        }
+	        else {
+	            test.log(Status.SKIP, MarkupHelper.createLabel(result.getName()+" SKIPPED ", ExtentColor.ORANGE));
+	            test.skip(result.getThrowable());
+	        }
+	    }
+	
+	
+	}
+	

@@ -1,0 +1,26 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import com.FlipKart.Listerners.TestListener;
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.PageObjects.SearchPage;
+import com.FlipKart.Utilities.Utilities;
+
+@Listeners(TestListener.class)
+public class AddProductTest extends BaseClass {
+
+	AddProduct addproductdetails;
+
+
+	@Test(description="This method is used to validate the product add to card and validate the product's name")
+	public void addProductValidation() throws InterruptedException {
+		
+		addproductdetails= new AddProduct(driver);
+		addproductdetails.addProduct();
+		
+		
+	}
+
+}

@@ -1,0 +1,41 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Test;
+
+import com.FlipKart.Listerners.ExtendReportListener;
+import com.FlipKart.Listerners.ITestListener;
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.PageObjects.HomePage;
+import com.FlipKart.PageObjects.LoginFlipkart;
+import com.aventstack.extentreports.ExtentTest;
+
+public class HomePageTest extends BaseClass{
+	LoginFlipkart loginFlip;
+	HomePage homePage;
+	AddProduct addproduct;
+	public HomePageTest() {
+		super();
+	}
+/*	
+	@Test(priority=0)
+	public void loginTest() throws InterruptedException
+	{
+		
+		initialization();
+		LoginFlipkart loginFlip =new LoginFlipkart(driver);
+		Thread.sleep(2000);
+		homePage =loginFlip.validateLogin(prop.getProperty("loginMobileNumber"), prop.getProperty("loginPassword"));
+		catch(AssertionError | Exception e)
+		{
+			testStepHandle("FAIL", driver, loginfo,e);
+		}
+	}*/
+	
+	@Test()
+	public void homepageValidation()
+	{
+		System.out.println("Home page test");	
+		/*HomePage home = new HomePage(driver);
+		addproduct=home.searchItem("Camera");*/
+	}
+}

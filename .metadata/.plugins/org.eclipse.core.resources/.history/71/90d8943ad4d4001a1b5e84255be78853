@@ -1,0 +1,21 @@
+package com.FlipKart.PageObjects;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import com.FlipKart.testCases.BaseClass;
+
+public class Logout extends BaseClass {
+
+
+	@FindBy(xpath = "//input[@class='_3X4tVa' and @type='text']")
+	WebElement pincodetxt;
+	
+	public Logout(WebDriver driver)
+	{
+		this.driver=driver;
+		PageFactory.initElements(driver,this);
+	}
+
+}

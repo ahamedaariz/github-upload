@@ -1,0 +1,31 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Test;
+
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.PageObjects.SearchPage;
+import com.FlipKart.Utilities.Utilities;
+
+public class AddProductTest extends BaseClass{
+	
+	AddProduct addproductdetails;
+
+	
+	@Test(priority=0)
+	public void addproductValidation()
+	{
+		System.out.println("Add Product page test");	
+		AddProduct addproductdetails = new AddProduct(driver);
+		addproductdetails.addProduct();
+		
+		// call get window handles method
+		Utilities.windowHandles("parentWindow");
+	}
+	
+@Test(priority=1)
+	public void checkPinCode()
+	{
+		addproductdetails.checkPinCode("700001");
+
+	}
+}

@@ -1,0 +1,24 @@
+package com.FlipKart.testCases;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+import com.FlipKart.PageObjects.SearchPage;
+
+public class SearchPageTest extends BaseClass{
+
+	SearchPage homePage;
+	
+	public SearchPageTest()
+	{
+	
+		homePage= new SearchPage(driver);
+	}
+	
+	@Test()
+	public void homepageValidation()
+	{
+	homePage.searchItem("Camera");
+	}
+}

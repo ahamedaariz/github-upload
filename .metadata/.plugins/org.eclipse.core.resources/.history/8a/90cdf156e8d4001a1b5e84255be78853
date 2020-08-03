@@ -1,0 +1,20 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Test;
+
+
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.PageObjects.SearchPage;
+
+public class SearchPageTest extends BaseClass{
+
+	SearchPage homePage;
+	AddProduct addproduct;
+	
+	@Test()
+	public void homepageValidation()
+	{
+		SearchPage home = new SearchPage(driver);
+		addproduct=home.searchItem("Camera");
+	}
+}

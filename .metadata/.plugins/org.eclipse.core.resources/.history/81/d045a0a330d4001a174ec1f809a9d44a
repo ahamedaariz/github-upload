@@ -1,0 +1,53 @@
+package com.FlipKart.Utilities;
+
+import java.util.Random;
+import java.util.Set;
+
+import com.FlipKart.testCases.BaseClass;
+
+public class TestUtil extends BaseClass {
+	
+	
+	public static long PAGE_LOAD_TIMEOUT =20;
+	public static long IMPLICIT_WAIT =20;
+	
+	public void getRandomClick()
+	{
+		// Get the random product
+		public void productClick()
+		{
+			int rand = 0;	
+			Random random = new Random();
+			
+			while (true){
+			    rand = random.nextInt(23); 
+			    	break;
+			}
+			System.out.println(rand);
+	}
+	
+	
+	public static void windowHandles(String superWindow)
+	{
+		String parentWindow =superWindow;
+		Set<String> windows = driver.getWindowHandles();
+		while(windows.size()!=0)
+		{
+			if(windows.size()>1)
+			{
+				break;
+			}
+			
+			windows = driver.getWindowHandles();
+		}
+		
+		for(String childWindow:windows )
+		{
+			if(childWindow!=parentWindow)
+			{
+				driver.switchTo().window(childWindow);
+			}
+		}
+	}
+
+}

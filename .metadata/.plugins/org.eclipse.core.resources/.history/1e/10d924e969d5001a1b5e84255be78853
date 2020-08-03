@@ -1,0 +1,57 @@
+package com.FlipKart.Listerners;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentReports;
+
+
+public class TestListener extends ExtendReportListener implements ITestListener{
+
+	private static ExtentReports extent;
+
+	@Test()
+	public void onStart(ITestContext context) {
+		
+		System.out.println("*** Test Suite " + context.getName() + " started ***");
+		
+		//ExtendReportListener.setUp();
+		extent=setUp();
+	}
+@Test()
+	public void onFinish(ITestContext context) {
+		System.out.println(("*** Test Suite " + context.getName() + " ending ***"));
+		extent.flush();
+		System.out.println("Generated Report ...");
+		
+	}
+	@Test()
+	public void onTestStart(ITestResult result) {
+		System.out.println(("Running test method " + result.getMethod().getMethodName() + "..."));
+	}
+@Test()
+	public void onTestSuccess(ITestResult result) {
+		System.out.println("PASS");
+		
+	}
+@Test()
+	public void onTestFailure(ITestResult result) {
+	System.out.println("FAIL");
+		
+	}
+
+@Test()
+	public void onTestSkipped(ITestResult result) {
+		System.out.println("SKIP");
+	}
+
+@Test()
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		
+	}
+
+
+
+}

@@ -1,0 +1,19 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Test;
+
+import com.FlipKart.PageObjects.AddProduct;
+
+public class AddProductTest extends BaseClass{
+	
+	AddProduct addproduct;
+
+	
+	@Test()
+	public void addproductValidation()
+	{
+		System.out.println("Add Product page test");	
+		AddProduct addproductdetails = new AddProduct(driver);
+		addproductdetails.addProduct();
+	}
+}

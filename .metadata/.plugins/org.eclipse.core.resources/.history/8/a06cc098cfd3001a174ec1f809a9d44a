@@ -1,0 +1,5 @@
+package com.FlipKart.Utilities;
+
+public class ReadConfig {
+
+}

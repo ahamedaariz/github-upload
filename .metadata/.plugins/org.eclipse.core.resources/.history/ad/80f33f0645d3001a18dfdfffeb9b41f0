@@ -1,0 +1,31 @@
+package com.FlipKart.PageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+
+public class FlipKartSearch {
+	
+	public static WebDriver driver;
+
+	FlipKartSearch(WebDriver driver)
+	{
+		this.driver =driver;
+		PageFactory.initElements(driver,this);
+	}
+	
+	@FindBy(name="q")
+	WebElement searchtext;
+	
+	public void searchItem()
+	{
+		searchtext.sendKeys("General Knowledge 2020");
+	}
+	
+	
+	
+	
+
+}

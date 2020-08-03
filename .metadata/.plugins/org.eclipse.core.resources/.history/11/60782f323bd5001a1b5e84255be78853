@@ -1,0 +1,38 @@
+package com.FlipKart.testCases;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.FlipKart.PageObjects.LoginPage;
+import com.FlipKart.PageObjects.SearchPage;
+
+public class LoginPageTest extends BaseClass{
+	
+	LoginPage loginFlip;
+	SearchPage homePage;
+	public LoginPageTest()
+	{
+		super();
+		loginFlip = new LoginPage(driver);
+	}
+	
+	@Test(description="")
+	public void loginTest() throws InterruptedException
+	{
+	
+		Thread.sleep(2000);
+		loginFlip.validateLogin(prop.getProperty("loginMobileNumber"), prop.getProperty("loginPassword"));
+		System.out.println("Login in Successfully");
+		String actual =driver.getTitle();
+		System.out.println(actual);
+		String expected ="Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!";
+		Assert.assertEquals(actual, expected);
+		
+	}
+	
+/*	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+	}*/
+}

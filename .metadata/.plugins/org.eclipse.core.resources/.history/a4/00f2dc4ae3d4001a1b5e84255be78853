@@ -1,0 +1,17 @@
+package com.FlipKart.testCases;
+
+import com.FlipKart.PageObjects.Logout;
+
+public class LogoutTest extends BaseClass {
+	Logout signout;
+	
+	@Test()
+	public void logouttest() throws InterruptedException
+	{
+		 signout = new Logout(driver);
+		 signout.logout();
+		
+	}
+	
+
+}

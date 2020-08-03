@@ -1,0 +1,44 @@
+package com.FlipKart.testCases;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.PageObjects.HomePage;
+
+public class HomePageValidation {
+
+	public static WebDriver driver;
+	public static String url ="https://www.flipkart.com/";
+	public static HomePage home;
+	
+	@BeforeClass
+	public void setUp()
+	{
+		System.setProperty("webdriver.chrome.driver", "D:\\FlipKart_Framework\\com.FlipKart\\Drivers\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+		driver.get(url);
+		home = new HomePage(driver);
+	}	
+	@Test(priority=0)
+	public void homepageValidation()
+	{
+		home.closeButton();
+		home.searchItem("General Knowledge Capsule 2020");
+	}
+	
+	@Test(priority=1)
+	public void AddProductValidation()
+	{
+		AddProduct addp = new AddProduct(driver);
+		addp.productClick();
+	}
+	
+	
+}

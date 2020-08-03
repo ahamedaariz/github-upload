@@ -1,0 +1,16 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Test;
+import com.FlipKart.PageObjects.HomePage;
+
+public class HomePageValidation extends BaseClass {
+	public HomePage home;
+	
+	@Test()
+	public void homepageValidation()
+	{
+		home = new HomePage(driver);
+		home.closeButton();
+		home.searchItem("General Knowledge Capsule 2020");
+	}
+}

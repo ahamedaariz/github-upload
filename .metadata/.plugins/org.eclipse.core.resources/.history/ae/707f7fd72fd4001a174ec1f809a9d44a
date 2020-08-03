@@ -1,0 +1,24 @@
+package com.FlipKart.testCases;
+
+import org.testng.annotations.Test;
+
+import com.FlipKart.Listerners.ExtendReportListener;
+import com.FlipKart.Listerners.ITestListener;
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.PageObjects.HomePage;
+import com.FlipKart.PageObjects.LoginFlipkart;
+import com.FlipKart.PageObjects.SearchPage;
+import com.aventstack.extentreports.ExtentTest;
+
+public class SearchPageTest extends BaseClass{
+
+	SearchPage homePage;
+	AddProduct addproduct;
+	
+	@Test()
+	public void homepageValidation()
+	{
+		SearchPage home = new SearchPage(driver);
+		addproduct=home.searchItem("Camera");
+	}
+}

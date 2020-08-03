@@ -1,0 +1,36 @@
+package com.FlipKart.testData;
+
+public class ReadExcelData {
+
+	public void readExcel()
+	{
+		File srcfile =new File ("D:\\ahamed2245\\ReadExcel.xlsx");
+		// create a object of FileInputStream class to read the excel file
+		FileInputStream fis=new FileInputStream(srcfile);
+
+		XSSFWorkbook   wbook = new  XSSFWorkbook(fis);
+		// read sheet inside the workbook
+		XSSFSheet sheet =wbook.getSheetAt(0);
+
+		HashMap<Integer, List<String>>   hmapObj = new HashMap<Integer, List<String>>();
+		Loop over all the rows of excel file to read it
+		for (int i=1; i<sheet.getPhysicalNumberOfRows(); i++ )
+		{
+			XSSFRow  currentRow =sheet.getRow(i);
+
+			List<String>mydata = new  ArrayList<String>();
+
+		for (int j=0; j<currentRow.getLastCellNum(); j++ )
+		{
+			XSSFCell  currentCell =currentRow.getCell(j);
+
+			mydata.add(currentCell.getStringCellValue());
+		}
+
+		hMapObj.put(i, mydata);
+
+		}
+		System.out.println(hMapObj);
+
+	}
+}
