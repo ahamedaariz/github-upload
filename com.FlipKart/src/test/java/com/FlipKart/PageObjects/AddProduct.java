@@ -3,16 +3,17 @@ package com.FlipKart.PageObjects;
 import java.util.List;
 import java.util.Random;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.FlipKart.Utilities.Utilities;
 import com.FlipKart.testCases.BaseClass;
+import com.relevantcodes.extentreports.LogStatus;
 
 public class AddProduct extends BaseClass {
 	Utilities utilites;
@@ -48,32 +49,37 @@ public class AddProduct extends BaseClass {
 			rand = random.nextInt(23);
 			break;
 		}
-		System.out.println(rand);
-		
+
 		// Scrolling the webpage by using JavascriptExecutor interface
 		Utilities.scrollWebPage();
-		
+
 		clickProduct.get(rand).click();
+		test.log(LogStatus.INFO,
+				"Select the Random product from the list of camera");
+
 		String getProductName = clickProduct.get(rand).getText();
-		System.out.println("The clickable item is:" + getProductName);
 		String parentWindow = driver.getWindowHandle();
 
 		// This static method call is used to handle windows
 		Utilities.windowHandles(parentWindow);
+		test.log(LogStatus.INFO,
+				"Window handling action is performed Successfully");
 		checkPincode("700001");
-		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.elementToBeClickable(pincodetxt));
 		addtocart.click();
-		
-		
+		test.log(LogStatus.INFO,
+				"The selected Product is added to the cart Successfully");
+
 		String GetAddedProdectName = driver.getPageSource();
 		if (GetAddedProdectName.contains(getProductName)) {
-			Assert.assertTrue(true, getProductName
-					+ " --> Product name is displayed ");
+			Assert.assertTrue(true, getProductName);
+			test.log(LogStatus.INFO,
+					"The Added Product name is equal to the checked out product name");
 		}
 
 		else {
-			Assert.assertFalse(false, getProductName
-					+ " --> Product name is not displayed ");
+			Assert.assertFalse(false, getProductName);
 		}
 
 		Thread.sleep(2000);
@@ -86,6 +92,7 @@ public class AddProduct extends BaseClass {
 
 	}
 
+	// this method is used to set the pincode
 	public void checkPincode(String setpincode) {
 		pincodetxt.sendKeys(setpincode);
 		checklink.click();

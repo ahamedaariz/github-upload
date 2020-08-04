@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-FlipKart_Automation_Suite">
-              <span class="suite-name border-failed">FlipKart Automation Suite</span>
+              <span class="suite-name border-passed">FlipKart Automation Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,21 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">4 methods, 1 failed,   3 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-FlipKart_Automation_Suite" class="hide-methods failed suite-FlipKart_Automation_Suite"> (hide)</a> <!-- hide-methods failed suite-FlipKart_Automation_Suite -->
-                      <a href="#" panel-name="suite-FlipKart_Automation_Suite" class="show-methods failed suite-FlipKart_Automation_Suite"> (show)</a> <!-- show-methods failed suite-FlipKart_Automation_Suite -->
-                    </span>
-                    <div class="method-list-content failed suite-FlipKart_Automation_Suite">
-                      <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-FlipKart_Automation_Suite" title="com.FlipKart.testCases.AddProductTest" hash-for-method="addProductValidation">addProductValidation</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-FlipKart_Automation_Suite -->
+                    <span class="method-stats">4 methods,   4 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -114,6 +100,11 @@
                       <a href="#" panel-name="suite-FlipKart_Automation_Suite" class="show-methods passed suite-FlipKart_Automation_Suite"> (show)</a> <!-- show-methods passed suite-FlipKart_Automation_Suite -->
                     </span>
                     <div class="method-list-content passed suite-FlipKart_Automation_Suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-FlipKart_Automation_Suite" title="com.FlipKart.testCases.AddProductTest" hash-for-method="addProductValidation">addProductValidation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-FlipKart_Automation_Suite" title="com.FlipKart.testCases.LoginPageTest" hash-for-method="loginTest">loginTest</a> <!-- method navigator-link -->
@@ -141,45 +132,6 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-FlipKart_Automation_Suite" class="panel FlipKart_Automation_Suite">
-          <div class="suite-FlipKart_Automation_Suite-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">com.FlipKart.testCases.AddProductTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="addProductValidation">
-                  </a> <!-- addProductValidation -->
-                  <span class="method-name">addProductValidation</span>
-                  <div class="stack-trace">org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document
-  (Session info: chrome=85.0.4183.48)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;IBRAHIM&apos;, ip: &apos;192.168.43.16&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_251&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 85.0.4183.48, chrome: {chromedriverVersion: 84.0.4147.30 (48b3e868b4cc0..., userDataDir: C:\Users\AHAMED\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:52155}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
-Session ID: 25ee411832b343905adeb6a37f537420
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
-	at com.sun.proxy.$Proxy11.click(Unknown Source)
-	at com.FlipKart.PageObjects.AddProduct.addProduct(AddProduct.java:80)
-	at com.FlipKart.testCases.AddProductTest.addProductValidation(AddProductTest.java:14)
-... Removed 33 stack frames
-</div> <!-- stack-trace -->
-                  <em>
-(This method is used to validate the product add to card and validate the product's name)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-FlipKart_Automation_Suite-class-failed -->
           <div class="suite-FlipKart_Automation_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -210,6 +162,23 @@ Session ID: 25ee411832b343905adeb6a37f537420
                   <span class="method-name">userLogout</span>
                   <em>
 (This method used to logout the application)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-FlipKart_Automation_Suite-class-passed -->
+          <div class="suite-FlipKart_Automation_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.FlipKart.testCases.AddProductTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="addProductValidation">
+                  </a> <!-- addProductValidation -->
+                  <span class="method-name">addProductValidation</span>
+                  <em>
+(This method is used to validate the product add to card and validate the product's name)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -290,24 +259,24 @@ data.addRows(4);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'addProductValidation')
 data.setCell(0, 2, 'com.FlipKart.testCases.AddProductTest')
-data.setCell(0, 3, 22125);
+data.setCell(0, 3, 11964);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'loginTest')
-data.setCell(1, 2, 'com.FlipKart.testCases.LoginPageTest')
-data.setCell(1, 3, 4772);
+data.setCell(1, 1, 'searchItemValidation')
+data.setCell(1, 2, 'com.FlipKart.testCases.SearchPageTest')
+data.setCell(1, 3, 1712);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'userLogout')
-data.setCell(2, 2, 'com.FlipKart.testCases.LogoutTest')
-data.setCell(2, 3, 1606);
+data.setCell(2, 1, 'loginTest')
+data.setCell(2, 2, 'com.FlipKart.testCases.LoginPageTest')
+data.setCell(2, 3, 619);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'searchItemValidation')
-data.setCell(3, 2, 'com.FlipKart.testCases.SearchPageTest')
-data.setCell(3, 3, 453);
+data.setCell(3, 1, 'userLogout')
+data.setCell(3, 2, 'com.FlipKart.testCases.LogoutTest')
+data.setCell(3, 3, 512);
 window.suiteTableData['FlipKart_Automation_Suite']= { tableData: data, tableDiv: 'times-div-FlipKart_Automation_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 28 seconds</span>
+              <span class="suite-total-time">Total running time: 14 seconds</span>
               <div id="times-div-FlipKart_Automation_Suite">
               </div> <!-- times-div-FlipKart_Automation_Suite -->
             </div> <!-- times-div -->
@@ -322,7 +291,7 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-FlipKart_Automation_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">9 ignored methods</span>
+            <span class="header-content">6 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
@@ -331,8 +300,6 @@ return data;
                 <span class="ignored-method-name">tearDown</span>
                 <br/>
                 <span class="ignored-method-name">initialization</span>
-                <br/>
-                <span class="ignored-method-name">closeExtendReport</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -343,8 +310,6 @@ return data;
                 <br/>
                 <span class="ignored-method-name">initialization</span>
                 <br/>
-                <span class="ignored-method-name">closeExtendReport</span>
-                <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
             <div class="ignored-class-div">
@@ -353,8 +318,6 @@ return data;
                 <span class="ignored-method-name">tearDown</span>
                 <br/>
                 <span class="ignored-method-name">initialization</span>
-                <br/>
-                <span class="ignored-method-name">closeExtendReport</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -373,64 +336,36 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="test-method">
                 <span class="method-name">loginTest</span>
-                <span class="method-start">26230 ms</span>
+                <span class="method-start">15184 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">getResult([TestResult name=loginTest status=SUCCESS method=LoginPageTest.loginTest()[pri:0, instance:com.FlipK...)</span>
-                <span class="method-start">31006 ms</span>
-              </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.FlipKart.testCases.SearchPageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">searchItemValidation</span>
-                <span class="method-start">31172 ms</span>
+                <span class="method-start">15808 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">getResult([TestResult name=searchItemValidation status=SUCCESS method=SearchPageTest.searchItemValidation()[pr...)</span>
-                <span class="method-start">31630 ms</span>
-              </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.FlipKart.testCases.AddProductTest</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">addProductValidation</span>
-                <span class="method-start">31653 ms</span>
+                <span class="method-start">17523 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">getResult([TestResult name=addProductValidation status=FAILURE method=AddProductTest.addProductValidation()[pr...)</span>
-                <span class="method-start">53782 ms</span>
-              </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.FlipKart.testCases.LogoutTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">userLogout</span>
-                <span class="method-start">55045 ms</span>
+                <span class="method-start">29495 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">getResult([TestResult name=userLogout status=SUCCESS method=LogoutTest.userLogout()[pri:0, instance:com.FlipKa...)</span>
-                <span class="method-start">56654 ms</span>
-              </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.FlipKart.testCases.LoginPageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-test after">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">closeExtendReport</span>
-                <span class="method-start">56659 ms</span>
-              </div> <!-- configuration-test after -->
+              <div class="configuration-suite after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">30799 ms</span>
+              </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

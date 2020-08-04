@@ -1,0 +1,82 @@
+package com.FlipKart.ExtendReport;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
+import com.FlipKart.Utilities.Utilities;
+import com.FlipKart.testCases.BaseClass;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.LogStatus;
+
+public class ListerenerTest extends BaseClass implements ITestListener {
+
+	public void onStart(ITestContext context) {
+
+		// Get the reports from this method
+		reports = new ExtentReports(Utilities.getReportName());
+		reports.addSystemInfo("Application", "FlipKart");
+		reports.addSystemInfo("Host Name", "Ibrahim");
+		reports.addSystemInfo("Environment", "QA");
+		reports.addSystemInfo("User Name", "Ahamed");
+		reports.loadConfig(new File(System.getProperty("user.dir")
+				+ "//extent-config.xml"));
+	}
+
+	public void onFinish(ITestContext context) {
+		reports.endTest(test);
+		reports.flush();
+	}
+
+	public void onTestStart(ITestResult result) {
+
+		test = reports.startTest(result.getMethod().getMethodName());
+		test.log(LogStatus.INFO, result.getMethod().getMethodName()
+				+ " test is started");
+	}
+
+	public void onTestSuccess(ITestResult result) {
+
+		test.log(LogStatus.PASS, result.getMethod().getMethodName()
+				+ "test is passed");
+	}
+
+	public void onTestFailure(ITestResult result) {
+
+		test.log(LogStatus.FAIL, result.getMethod().getMethodName()
+				+ " test is failed");
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File src = ts.getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(src,
+					new File(Utilities.getScreenshotName(result)));
+			String file = test.addScreenCapture(Utilities
+					.getScreenshotName(result));
+			test.log(LogStatus.FAIL, result.getMethod().getMethodName()
+					+ "test is failed", file);
+			test.log(LogStatus.FAIL, result.getMethod().getMethodName()
+					+ "test is failed", result.getThrowable().getMessage());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void onTestSkipped(ITestResult result) {
+		test.log(LogStatus.SKIP, result.getMethod().getMethodName()
+				+ "test is skipped");
+	}
+
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+	}
+
+}

@@ -3,15 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [FlipKart Automation Suite]">
   <test thread-count="5" name="Flipkart Test(failed)">
     <classes>
-      <class name="com.FlipKart.testCases.AddProductTest">
+      <class name="com.FlipKart.testCases.SearchPageTest">
         <methods>
-          <include name="getResult"/>
-          <include name="addProductValidation"/>
+          <include name="searchItemValidation"/>
           <include name="tearDown"/>
           <include name="initialization"/>
-          <include name="closeExtendReport"/>
         </methods>
-      </class> <!-- com.FlipKart.testCases.AddProductTest -->
+      </class> <!-- com.FlipKart.testCases.SearchPageTest -->
     </classes>
   </test> <!-- Flipkart Test(failed) -->
 </suite> <!-- Failed suite [FlipKart Automation Suite] -->

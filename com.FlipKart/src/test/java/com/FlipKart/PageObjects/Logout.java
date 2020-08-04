@@ -5,29 +5,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.FlipKart.testCases.BaseClass;
 
 public class Logout extends BaseClass {
 
-
-	@FindBy(xpath="//*[@id='container']/div/div[1]/div[1]/div[2]/div[3]/div/div/div[1]/div")
+	@FindBy(xpath = "//*[@id='container']/div/div[1]/div[1]/div[2]/div[3]/div/div/div[1]/div")
 	WebElement signinUser;
-	
-	@FindBy(xpath="//div[text()='Logout']")
+
+	@FindBy(xpath = "//div[text()='Logout']")
 	WebElement Logout;
-	public Logout(WebDriver driver)
-	{
-		this.driver=driver;
-		PageFactory.initElements(driver,this);
+
+	public Logout(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
-	
-	public void logout() throws InterruptedException
-	{
-		Actions act=new Actions(driver);
+
+	public void logout() throws InterruptedException {
+		Actions act = new Actions(driver);
 		act.moveToElement(signinUser).build().perform();
-		Thread.sleep(1000);
-		Logout.click();	
+		WebDriverWait logoutwait1 = new WebDriverWait(driver,10);	
+		logoutwait1.until(ExpectedConditions.elementToBeClickable(Logout));
+		Logout.click();
 	}
-	
+
 }

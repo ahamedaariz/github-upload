@@ -15,7 +15,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
+import org.testng.ITestResult;
 
 import com.FlipKart.PageObjects.AddProduct;
 import com.FlipKart.testCases.BaseClass;
@@ -49,27 +49,6 @@ public class Utilities extends BaseClass {
 		}
 	}
 
-	// This method helps to take screenshot
-	public static String takeScreenshot(WebDriver driver, String screenShotName) {
-		try {
-			DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_hh:mm:ss");
-			Date date = new Date();
-			time = dateFormat.format(date);
-			TakesScreenshot tc = (TakesScreenshot) driver;
-			File src = tc.getScreenshotAs(OutputType.FILE);
-
-			path = System.getProperty("user.dir") + "/Screenshots/"
-					+ screenShotName + time + ".png";
-
-			File destination = new File(path);
-			FileUtils.copyFile(src, destination);
-			System.out.println("Screen shot taken");
-		} catch (Exception ex) {
-			System.out.println("Screenshot error is" + ex.getMessage());
-		}
-		return path;
-	}
-
 	// Get Cell data
 	public static String getcellData_Test(String path, String sheet, String key) {
 		String CellData = "";
@@ -96,36 +75,18 @@ public class Utilities extends BaseClass {
 		return CellData;
 	}
 
-	// *************************---***************************//////
+	public static String getScreenshotName(ITestResult result) {
+		return System.getProperty("user.dir") + "/Screenshots/"
+				+ result.getMethod().getMethodName() + '_'
+				+ new SimpleDateFormat("yyyy-MM-dd hh-mm").format(new Date())
+				+ ".png";
+	}
 
-	public static String getcellData_OBR_PC(String path, String sheet,
-			String key, String columnName) {
-		String CellData = "";
-		int ColumnNum = 1;
-		if (columnName.equalsIgnoreCase("LocatorType"))
-			ColumnNum = 1;
-		else if (columnName.equalsIgnoreCase("LocatorValue"))
-			ColumnNum = 2;
-		else if (columnName.equalsIgnoreCase("Value"))
-			ColumnNum = 1;
-
-		try {
-			FileInputStream fis = new FileInputStream(new File(path));
-			Workbook wb = new XSSFWorkbook(fis);
-			Sheet sheet1 = wb.getSheet(sheet);
-
-			int rowCount = sheet1.getLastRowNum();
-			for (int row = 1; row <= rowCount + 1; row++) {
-				String RowData = sheet1.getRow(row).getCell(0).toString();
-				if (RowData.trim().equalsIgnoreCase(key)) {
-					CellData = sheet1.getRow(row).getCell(ColumnNum).toString();
-					break;
-				}
-			}
-
-		} catch (Exception e) {
-		}
-		return CellData;
+	public static String getReportName() {
+		return System.getProperty("user.dir")
+				+ "/Reports/"
+				+ new SimpleDateFormat("yyyy-MM-dd hh-mm-ss")
+						.format(new Date()) + '_' + "reports.html";
 	}
 
 }

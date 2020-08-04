@@ -1,0 +1,28 @@
+package com.FlipKart.testCases;
+
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import com.FlipKart.PageObjects.AddProduct;
+import com.FlipKart.PageObjects.SearchPage;
+
+@Listeners(com.FlipKart.ExtendReport.ListerenerTest.class)
+public class SearchPageTest extends BaseClass {
+
+	SearchPage homePage;
+	AddProduct addproduct;
+
+	@Test(description = "This method is used to search the item")
+	public void searchItemValidation() throws InterruptedException {
+		String actual =driver.getTitle();
+		System.out.println(actual);
+		String expected ="Online Scvcbvcbhopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!";
+		Assert.assertEquals(actual, expected);
+		homePage = new SearchPage(driver);
+		addproduct = homePage.searchItem("Camera");
+		// Assert.assertFalse(false, "verify the failure case");
+		
+
+	}
+}

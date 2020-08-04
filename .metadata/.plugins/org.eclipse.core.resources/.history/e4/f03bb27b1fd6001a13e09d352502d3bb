@@ -1,0 +1,103 @@
+package com.FlipKart.ExtendReport;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+
+
+
+
+
+
+
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import com.FlipKart.Utilities.Utilities;
+import com.FlipKart.testCases.BaseClass;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import com.relevantcodes.extentreports.LogStatus;
+
+
+public class ListerenerTest extends BaseClass implements ITestListener{
+	
+	 public void onStart(ITestContext context) {
+		   
+		 // Get the reports from this method
+		  reports = new ExtentReports(this.getReportName());
+		  reports.addSystemInfo("Application", "FlipKart");
+		  reports.addSystemInfo("Host Name", "Ibrahim");
+		  reports.addSystemInfo("Environment", "QA");
+		  reports.addSystemInfo("User Name", "Ahamed");
+		  reports.loadConfig(new File(System.getProperty("user.dir") + "//extent-config.xml"));
+		 }
+		 public void onFinish(ITestContext context) {
+		  reports.endTest(test);
+		  reports.flush();
+		 }
+	
+	public void onTestStart(ITestResult result) {
+
+	  test = reports.startTest(result.getMethod().getMethodName());
+	  test.log(LogStatus.INFO, result.getMethod().getMethodName() + " test is started");	  
+	 }
+	 public void onTestSuccess(ITestResult result) {
+		 
+	  test.log(LogStatus.PASS, result.getMethod().getMethodName() + "test is passed");
+	 }
+	 public void onTestFailure(ITestResult result) {
+	  System.out.println("on test failure");
+	  test.log(LogStatus.FAIL, result.getMethod().getMethodName() + " test is failed");
+	  TakesScreenshot ts = (TakesScreenshot) driver;
+	  System.out.println(driver);
+	  File src = ts.getScreenshotAs(OutputType.FILE);
+	  try {
+	   FileUtils.copyFile(src, new File(this.getScreenshotName(result)));
+	   String file = test.addScreenCapture(this.getScreenshotName(result));
+	   test.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test is failed", file);
+	   test.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test is failed", result.getThrowable().getMessage());
+	  }
+	  catch (IOException e) {
+	   e.printStackTrace();
+	  }
+	  
+//	   	String res = Utilities.takeScreenshot(driver, result.getName());
+//        ExtentTest image= test.addScreenCapture(res);
+//        String TestCaseName = this.getClass().getSimpleName() + " Test Case Failure";
+//        test.log(Status.FAIL, TestCaseName + test.addScreencastFromPath(res));
+	  
+	  
+	 }
+	 public void onTestSkipped(ITestResult result) {
+	  System.out.println("on test skipped");
+	  test.log(LogStatus.SKIP, result.getMethod().getMethodName() + "test is skipped");
+	 }
+	 public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+	  System.out.println("on test sucess within percentage");
+	 }
+	 
+	 public String getScreenshotName(ITestResult result ) {
+		 return System.getProperty("user.dir") + "/Screenshots/" + result.getMethod().getMethodName() + '_'+ new SimpleDateFormat("yyyy-MM-dd hh-mm").format(new Date())+ ".png"; 
+	 }
+	 
+	 public String getReportName() {
+		 return System.getProperty("user.dir") + "/Reports/"+ new SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(new Date())+ '_' + "reports.html"; 
+	 }
+	 
+
+}

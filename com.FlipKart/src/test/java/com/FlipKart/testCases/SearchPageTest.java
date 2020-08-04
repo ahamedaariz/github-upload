@@ -1,9 +1,13 @@
 package com.FlipKart.testCases;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 import com.FlipKart.PageObjects.AddProduct;
 import com.FlipKart.PageObjects.SearchPage;
+import com.relevantcodes.extentreports.LogStatus;
 
+@Listeners(com.FlipKart.ExtendReport.ListerenerTest.class)
 public class SearchPageTest extends BaseClass {
 
 	SearchPage homePage;
@@ -11,8 +15,10 @@ public class SearchPageTest extends BaseClass {
 
 	@Test(description = "This method is used to search the item")
 	public void searchItemValidation() throws InterruptedException {
+		
 		homePage = new SearchPage(driver);
 		addproduct = homePage.searchItem("Camera");
-
+		test.log(LogStatus.INFO, "To search the camera");
+		
 	}
 }

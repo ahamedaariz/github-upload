@@ -1,37 +1,38 @@
 package com.FlipKart.testCases;
 
-
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.FlipKart.PageObjects.LoginPage;
 import com.FlipKart.PageObjects.SearchPage;
-import com.FlipKart.ExtendReport.*;
+import com.relevantcodes.extentreports.LogStatus;
 
+@Listeners(com.FlipKart.ExtendReport.ListerenerTest.class)
 
-public class LoginPageTest extends BaseClass{
-	
+public class LoginPageTest extends BaseClass {
+
 	LoginPage loginFlip;
 	SearchPage homePage;
-	public LoginPageTest()
-	{
+
+	public LoginPageTest() {
 		super();
-		
+
 	}
-	
-	@Test(description="validate the login of the application's mobile number and password")
-	public void loginTest() throws InterruptedException
-	{
+
+	@Test(description = "validate the login of the application's mobile number and password")
+	public void loginTest() throws InterruptedException {
 		loginFlip = new LoginPage(driver);
-		homePage=loginFlip.validateLogin(prop.getProperty("loginMobileNumber"), prop.getProperty("loginPassword"));
-		System.out.println("Login in Successfully");
-		String actual =driver.getTitle();
-		System.out.println(actual);
-		String expected ="Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!";
+		homePage = loginFlip.validateLogin(
+				prop.getProperty("loginMobileNumber"),
+				prop.getProperty("loginPassword"));
+
+		test.log(LogStatus.INFO, "User is Login Successfully");
+		String actual = driver.getTitle();
+		String expected = "Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!";
 		Assert.assertEquals(actual, expected);
-		
+		test.log(LogStatus.INFO, "Home page Title is verified successfully");
+
 	}
-	
 
 }
