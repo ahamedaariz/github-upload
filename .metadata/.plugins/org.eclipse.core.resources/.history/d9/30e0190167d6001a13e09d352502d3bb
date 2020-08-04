@@ -1,0 +1,70 @@
+package commonUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ReadExcelData {
+
+	// Get Cell data
+	public static String getcellData_Test(String sheet, String key,
+			String Column) {
+
+		String excelconfigpath = System.getProperty("user.dir");
+		File srcfile = new File(excelconfigpath
+				+ "/src/test/resources/testData/flipkartTestData.xlsx");
+
+		String CellData = "";
+		int RowNum = 1;
+		int ColumnPostion = 0;
+
+		try {
+			FileInputStream fis = new FileInputStream(srcfile);
+			Workbook wb = new XSSFWorkbook(fis);
+			Sheet sheet1 = wb.getSheet(sheet);
+
+			int columnCount = sheet1.getRow(ColumnPostion).getLastCellNum();
+			int RowCount = sheet1.getPhysicalNumberOfRows();
+
+			outterloop: for (int cell = 0; cell <= columnCount; cell++) {
+				String RowData = sheet1.getRow(ColumnPostion).getCell(cell)
+						.toString();
+				if (RowData.trim().equalsIgnoreCase(Column)) {
+
+					for (int rowPos = 1; rowPos < RowCount; rowPos++) {
+
+						String testcasekey = sheet1.getRow(rowPos).getCell(0)
+								.getStringCellValue();
+
+						if (testcasekey.trim().equalsIgnoreCase(key)) {
+
+							CellData = sheet1.getRow(rowPos).getCell(cell)
+									.toString();
+							break outterloop;
+
+						}
+
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
+			// reporter.log(LogStatus.ERROR,"Data Failed to fetch, Please check the Excel Sheet Method Parameters");
+			// Assert.fail();
+		}
+		return CellData;
+	}
+
+}

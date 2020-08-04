@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [FlipKart Automation Suite]">
+  <parameter name="TestCaseId" value="TC_1"/>
+  <test thread-count="5" name="Flipkart Test(failed)">
+    <classes>
+      <class name="testCases.SearchPageTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="initialization"/>
+          <include name="searchItemValidation"/>
+        </methods>
+      </class> <!-- testCases.SearchPageTest -->
+    </classes>
+  </test> <!-- Flipkart Test(failed) -->
+</suite> <!-- Failed suite [FlipKart Automation Suite] -->

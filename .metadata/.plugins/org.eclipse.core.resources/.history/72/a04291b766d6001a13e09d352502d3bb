@@ -1,0 +1,29 @@
+package testCases;
+
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import pageObjects.AddProduct;
+import pageObjects.SearchPage;
+import base.BaseClass;
+
+import com.relevantcodes.extentreports.LogStatus;
+import commonUtils.ReadExcelData;
+
+@Listeners(commonUtils.ListerenerTest.class)
+public class SearchPageTest extends BaseClass {
+
+	SearchPage homePage;
+	AddProduct addproduct;
+
+	@Test(description = "This method is used to search the item")
+	public void searchItemValidation() throws InterruptedException {
+		
+		homePage = new SearchPage(driver);
+		String searchItemtxt = ReadExcelData.getcellData_Test( "Search_Product",
+				testCaseId, "Search_Item");
+		addproduct = homePage.searchItem(searchItemtxt);
+//		test.log(LogStatus.INFO, "To search the camera");
+		
+	}
+}
