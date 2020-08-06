@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="FlipKart Automation Suite">
+	<parameter name="TestCaseId" value="TC_1" />
+	<parameter name="browsers" value="chrome" />
+	<test name="Flipkart Test">
+		<classes>
+			<class name="testCases.LoginPageTest" />
+			<class name="testCases.SearchPageTest" />
+			<class name="testCases.AddProductTest" />
+			<class name="testCases.LogoutTest" />
+
+		</classes>
+	</test> <!-- Test -->
+	
+		<parameter name="browsers" value="ie" />
+	<test name="Flipkart Test">
+		<classes>
+			<class name="testCases.LoginPageTest" />
+			<class name="testCases.SearchPageTest" />
+			<class name="testCases.AddProductTest" />
+			<class name="testCases.LogoutTest" />
+
+		</classes>
+	</test> <!-- Test -->
+	
+		<parameter name="browsers" value="firefox" />
+	<test name="Flipkart Test">
+		<classes>
+			<class name="testCases.LoginPageTest" />
+			<class name="testCases.SearchPageTest" />
+			<class name="testCases.AddProductTest" />
+			<class name="testCases.LogoutTest" />
+
+		</classes>
+	</test> <!-- Test -->
+	
+</suite> <!-- Suite -->

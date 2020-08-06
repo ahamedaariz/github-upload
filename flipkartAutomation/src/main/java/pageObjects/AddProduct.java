@@ -32,9 +32,7 @@ public class AddProduct extends BaseClass {
 	@FindBy(xpath = "//button[text()='ADD TO CART']")
 	WebElement addtocart;
 
-	public AddProduct(WebDriver driver) {
-
-		this.driver = driver;
+	public AddProduct() {
 		PageFactory.initElements(driver, this);
 	}
 
@@ -62,7 +60,7 @@ public class AddProduct extends BaseClass {
 		test.log(LogStatus.INFO,
 				"Window handling action is performed Successfully");
 		checkPincode("700001");
-	
+
 		Utilities.waits(addtocart);
 		addtocart.click();
 		test.log(LogStatus.INFO,
@@ -86,7 +84,7 @@ public class AddProduct extends BaseClass {
 
 	// this method is used to set the pincode
 	public void checkPincode(String setpincode) {
-		
+
 		pincodetxt.sendKeys(setpincode);
 		Utilities.waits(pincodetxt);
 		checklink.click();

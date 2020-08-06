@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [FlipKart Automation Suite]">
-  <parameter name="TestCaseId" value="TC_1"/>
-  <test thread-count="5" name="Flipkart Test(failed)">
+<suite thread-count="3" guice-stage="DEVELOPMENT" name="Failed suite [FlipKart Automation Suite]" parallel="tests">
+  <test thread-count="3" name="Flipkart Test in Grid with browser chrome(failed)" parallel="tests">
+    <parameter name="TestCaseId" value="TC_1"/>
+    <parameter name="browsers" value="chrome"/>
     <classes>
-      <class name="testCases.SearchPageTest">
+      <class name="testCases.LogoutTest">
         <methods>
           <include name="tearDown"/>
           <include name="initialization"/>
-          <include name="searchItemValidation"/>
+          <include name="userLogout"/>
         </methods>
-      </class> <!-- testCases.SearchPageTest -->
+      </class> <!-- testCases.LogoutTest -->
     </classes>
-  </test> <!-- Flipkart Test(failed) -->
+  </test> <!-- Flipkart Test in Grid with browser chrome(failed) -->
 </suite> <!-- Failed suite [FlipKart Automation Suite] -->

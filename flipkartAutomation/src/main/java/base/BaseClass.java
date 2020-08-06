@@ -1,20 +1,21 @@
 package base;
 
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.AfterSuite;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -32,53 +33,57 @@ public class BaseClass {
 	public static ExtentTest test;
 	public static String testCaseId;
 
-	public BaseClass() {
-		try {
-			prop = new Properties();
-			String configpath = System.getProperty("user.dir");
-			File srcfile = new File(configpath
-					+ "/src/test/resources/testData/config.properties");
-			FileInputStream fis = new FileInputStream(srcfile);
-			prop.load(fis);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		catch (IOException e) {
-			System.out.println("Exception is:" + e.getMessage());
-		}
-	}
-
-	@BeforeSuite(description = "It is used for supporting different browsers")
-	@Parameters(value = { "TestCaseId" })
-	public static void initialization(String TestcaseId) {
+	@BeforeTest(description = "It is used for supporting different browsers")
+	@Parameters({ "TestCaseId", "browsers" })
+	public static void initialization(String TestcaseId, String browsername)
+			throws MalformedURLException {
 
 		testCaseId = TestcaseId;
 
 		String baseURL = ReadExcelData.getcellData_Test("Config", TestcaseId,
 				"URL");
-		String browsername = ReadExcelData.getcellData_Test("Config",
-				TestcaseId, "Browser");
 
-		if (browsername.equals("chrome")) {
-			String driverpath = System.getProperty("user.dir");
-			System.setProperty("webdriver.chrome.driver", driverpath
-					+ "/src/main/resources/chromedriver.exe");
-			driver = new ChromeDriver();
+		if (browsername.equalsIgnoreCase("chrome")) {
+			try {
+				String hubUrl = "http://192.168.1.3:4444/wd/hub";
+				DesiredCapabilities chromeCapabilities = new DesiredCapabilities();
+				chromeCapabilities.setBrowserName(browsername);
+				chromeCapabilities.setPlatform(Platform.WINDOWS);
+				ChromeOptions options = new ChromeOptions();
+				options.merge(chromeCapabilities);
+				driver = new RemoteWebDriver(new URL(hubUrl), options);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}
 
-		else if (browsername.equals("Firefox")) {
-			String driverpath = System.getProperty("user.dir");
-			System.setProperty("webdriver.gecko.driver", driverpath
-					+ "/src/main/resources/geckodriver.exe");
-			driver = new FirefoxDriver();
+		else if (browsername.equalsIgnoreCase("Firefox")) {
+			String hubUrl = "http://192.168.1.3:4444/wd/hub";
+
+			DesiredCapabilities ffCapabilities = new DesiredCapabilities();
+			ffCapabilities.setPlatform(Platform.WINDOWS);
+			ffCapabilities.setBrowserName(browsername);
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.merge(ffCapabilities);
+			driver = new RemoteWebDriver(new URL(hubUrl), firefoxOptions);
 		}
 
-		else if (browsername.equals("ie")) {
-			String driverpath = System.getProperty("user.dir");
-			System.setProperty("webdriver.ie.driver", driverpath
-					+ "/src/main/resources/IEDriverServer.exe");
-			driver = new InternetExplorerDriver();
+		else if (browsername.equalsIgnoreCase("ie")) {
+			String hubUrl = "http://192.168.1.3:4444/wd/hub";
+			DesiredCapabilities ieCapabilities = new DesiredCapabilities();
+			ieCapabilities.setBrowserName(browsername);
+			ieCapabilities.setPlatform(Platform.WINDOWS);
+			InternetExplorerOptions ieoptions = new InternetExplorerOptions();
+			ieoptions.setCapability("ie.usePerProcessProxy", "true");
+			ieoptions.setCapability("requireWindowFocus", "false");
+			ieoptions
+					.setCapability("ie.browserCommandLineSwitches", "-private");
+			ieoptions.setCapability("ie.ensureCleanSession", "true");
+			ieoptions.merge(ieCapabilities);
+			driver = new RemoteWebDriver(new URL(hubUrl), ieoptions);
+
 		}
 
 		driver.manage().window().maximize();
@@ -90,7 +95,7 @@ public class BaseClass {
 		driver.get(baseURL);
 	}
 
-	@AfterSuite(description = "used for closing all browser after executing application")
+	@AfterTest(description = "used for closing all browser after executing application")
 	public void tearDown() {
 		driver.quit();
 	}

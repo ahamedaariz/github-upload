@@ -1,12 +1,10 @@
 package pageObjects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import base.BaseClass;
-
 
 public class LoginPage extends BaseClass {
 
@@ -19,16 +17,14 @@ public class LoginPage extends BaseClass {
 	@FindBy(xpath = "//button[@type='submit' and @class='_2AkmmA _1LctnI _7UHT_c']")
 	WebElement loginbtn;
 
-	public LoginPage(WebDriver driver) {
-		this.driver = driver;
+	public LoginPage() {
 		PageFactory.initElements(driver, this);
 	}
 
-	public SearchPage validateLogin(String mblno, String passwrd) {
+	public void validateLogin(String mblno, String passwrd) {
 		loginmblNo.sendKeys(mblno);
 		loginpassword.sendKeys(passwrd);
 		loginbtn.click();
-		return new SearchPage(driver);
 	}
 
 }

@@ -16,7 +16,7 @@ public class AddProductTest extends BaseClass {
 	@Test(description = "This method is used to validate the product add to card and validate the product's name")
 	public void addProductValidation() throws InterruptedException {
 
-		addproductdetails = new AddProduct(driver);
+		addproductdetails = new AddProduct();
 		try {
 			addproductdetails.addProduct();
 			test.log(LogStatus.INFO, "Selected Product is added Successfully");

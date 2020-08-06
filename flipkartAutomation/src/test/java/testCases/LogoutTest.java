@@ -14,7 +14,7 @@ public class LogoutTest extends BaseClass {
 
 	@Test(description = "This method used to logout the application")
 	public void userLogout() throws InterruptedException {
-		signout = new Logout(driver);
+		signout = new Logout();
 		signout.logout();
 		test.log(LogStatus.INFO, "User is logout successfully");
 	}

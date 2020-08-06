@@ -1,6 +1,6 @@
 package pageObjects;
 
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -19,8 +19,7 @@ public class Logout extends BaseClass {
 	@FindBy(xpath = "//div[text()='Logout']")
 	WebElement Logout;
 
-	public Logout(WebDriver driver) {
-		this.driver = driver;
+	public Logout() {
 		PageFactory.initElements(driver, this);
 	}
 
